@@ -6,3 +6,19 @@
 //
 
 import Foundation
+import SwiftData
+
+@MainActor
+struct Previewer {
+    let container: ModelContainer
+    let food: Food
+    
+    init() throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        container = try ModelContainer(for: Food.self, configurations: config)
+        
+        food = Food(name: "Homemade Pizza", portionCalories: 277, portions: 2.5)
+        
+        container.mainContext.insert(food)
+    }
+}

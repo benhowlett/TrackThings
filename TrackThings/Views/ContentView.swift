@@ -6,19 +6,46 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query var food: [Food]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            ForEach(food) { food in
+                NavigationLink(value: food) {
+                    List {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(food.name)
+                                Text(food.getFormatedPortions())
+                            }
+                            Spacer()
+                            Text(String(format: "%.0f", food.getTotalCalories()))
+                        }
+                    }
+                }
+            }
+            .navigationTitle("TrackThings")
+            .toolbar {
+                
+            }
         }
-        .padding()
+    }
+    
+    func addFood() {
+        let food = Food(name: "", portionCalories: 0, portions: 1)
+        modelContext.insert(food)
     }
 }
 
 #Preview {
-    ContentView()
+    do {
+        let previewer = try Previewer()
+        return ContentView().modelContainer(previewer.container)
+    } catch {
+        return Text("Failed to create preview: \(error.localizedDescription)")
+    }
 }

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+extension Float {
+    var clean: String {
+        if self.rounded() == self {
+            
+        }
+    }
+}
