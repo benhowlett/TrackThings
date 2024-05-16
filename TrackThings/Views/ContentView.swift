@@ -11,6 +11,13 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @State private var path = NavigationPath()
+    @State private var date = Date()
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, MMM d"
+        return formatter
+    }()
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -20,8 +27,22 @@ struct ContentView: View {
                     EditFoodView(food: food, navigationPath: $path)
                 }
                 .toolbar {
-                    Button("Add food", systemImage: "plus") {
-                        addFood()
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Button("Previous date", systemImage: "chevron.backward") {
+                                incrementDate(by: -1)
+                            }
+//                            Text("\(date, formatter: dateFormatter)")
+                            DatePicker(selection: $date, displayedComponents: [.date]) {}
+                                .labelsHidden()
+                            Button("Next date", systemImage: "chevron.forward") {
+                                incrementDate(by: 1)                            }
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Add food", systemImage: "plus") {
+                            addFood()
+                        }
                     }
                 }
         }
@@ -31,6 +52,10 @@ struct ContentView: View {
         let newFood = Food(name: "", portionCalories: 0, portions: 1)
         modelContext.insert(newFood)
         path.append(newFood)
+    }
+    
+    func incrementDate(by amount: Int) {
+        date = Calendar.current.date(byAdding: .day, value: amount, to: date)!
     }
 }
 
