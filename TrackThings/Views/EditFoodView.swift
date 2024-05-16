@@ -46,9 +46,17 @@ struct EditFoodView: View {
                         .multilineTextAlignment(.trailing)
                 }
             }
+            Button("Save food") {
+                saveFood()
+            }
         }
         .navigationTitle("Edit Food")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func saveFood() {
+        modelContext.insert(food)
+        navigationPath.removeLast()
     }
 }
 
