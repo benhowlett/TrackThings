@@ -14,6 +14,7 @@
 		B52300B92BF2681D003B24CD /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52300B82BF2681D003B24CD /* Food.swift */; };
 		B52300BB2BF2810B003B24CD /* Previewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52300BA2BF2810B003B24CD /* Previewer.swift */; };
 		B541DE312BF538CF009F36BF /* EditFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B541DE302BF538CF009F36BF /* EditFoodView.swift */; };
+		B541DE332BF64308009F36BF /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B541DE322BF64308009F36BF /* FoodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		B52300B82BF2681D003B24CD /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		B52300BA2BF2810B003B24CD /* Previewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Previewer.swift; sourceTree = "<group>"; };
 		B541DE302BF538CF009F36BF /* EditFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFoodView.swift; sourceTree = "<group>"; };
+		B541DE322BF64308009F36BF /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				B52300AA2BF2664B003B24CD /* ContentView.swift */,
+				B541DE322BF64308009F36BF /* FoodView.swift */,
 				B541DE302BF538CF009F36BF /* EditFoodView.swift */,
 			);
 			path = Views;
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B541DE332BF64308009F36BF /* FoodView.swift in Sources */,
 				B52300AB2BF2664B003B24CD /* ContentView.swift in Sources */,
 				B52300A92BF2664B003B24CD /* TrackThingsApp.swift in Sources */,
 				B52300B92BF2681D003B24CD /* Food.swift in Sources */,
