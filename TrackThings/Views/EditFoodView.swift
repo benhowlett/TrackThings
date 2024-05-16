@@ -22,6 +22,9 @@ struct EditFoodView: View {
                     TextField("Name", text: $food.name)
                         .multilineTextAlignment(.trailing)
                 }
+                DatePicker(selection: $food.time, displayedComponents: [.date]) {
+                    Text("Date")
+                }
                 Picker("Meal", selection: $food.meal) {
                     ForEach(Meal.allCases) { meal in
                         Text(String(describing: meal))
