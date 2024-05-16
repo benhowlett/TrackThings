@@ -31,6 +31,11 @@ struct FoodView: View {
         }
     }
     
+    init(date: Date) {
+        // This allows the view to only show the food items from the currently selected date
+        _food = Query(filter: Food.selectedDayPredicate(date: date))
+    }
+    
     func deleteFood(at offsets: IndexSet) {
         for offset in offsets {
             let food = food[offset]
@@ -42,7 +47,7 @@ struct FoodView: View {
 #Preview {
     do {
         let previewer = try Previewer()
-        return FoodView().modelContainer(previewer.container)
+        return FoodView(date: Date()).modelContainer(previewer.container)
     } catch {
         return Text("Failed to create preview: \(error.localizedDescription)")
     }

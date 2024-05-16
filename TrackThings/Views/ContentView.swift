@@ -13,15 +13,10 @@ struct ContentView: View {
     @State private var path = NavigationPath()
     @State private var date = Date()
     
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, MMM d"
-        return formatter
-    }()
     
     var body: some View {
         NavigationStack(path: $path) {
-            FoodView()
+            FoodView(date: date)
                 .navigationTitle("TrackThings")
                 .navigationDestination(for: Food.self) { food in
                     EditFoodView(food: food, navigationPath: $path)
@@ -32,7 +27,6 @@ struct ContentView: View {
                             Button("Previous date", systemImage: "chevron.backward") {
                                 incrementDate(by: -1)
                             }
-//                            Text("\(date, formatter: dateFormatter)")
                             DatePicker(selection: $date, displayedComponents: [.date]) {}
                                 .labelsHidden()
                             Button("Next date", systemImage: "chevron.forward") {

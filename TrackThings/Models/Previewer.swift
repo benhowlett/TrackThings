@@ -17,7 +17,7 @@ struct Previewer {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         container = try ModelContainer(for: Food.self, configurations: config)
         
-        food = Food(name: "Homemade Pizza", portionCalories: 277, portions: 2.5)
+        food = Food(name: "Homemade Pizza", portionCalories: 277, portions: 2.5, time: Date())
         
         container.mainContext.insert(food)
     }

@@ -13,7 +13,8 @@ class Food {
     var name: String
     var portionCalories: Float
     var portions: Float
-    var time = Date()
+    var time: Date
+    var day: String
     var meal: Meal
     
     init(name: String, portionCalories: Float, portions: Float, time: Date = Date()) {
@@ -21,6 +22,7 @@ class Food {
         self.portionCalories = portionCalories
         self.portions = portions
         self.time = time
+        self.day = String(time.description[...time.description.index(time.description.startIndex, offsetBy: 9)])
         
         switch Calendar.current.component(.hour, from: time) {
         case 4..<11:
@@ -47,6 +49,13 @@ class Food {
             return String(format: "%.0f", portions)
         } else {
             return String("\(round(portions * 10) / 10)")
+        }
+    }
+    
+    static func selectedDayPredicate(date: Date) -> Predicate<Food> {
+        let selectedDay = String(date.description[...date.description.index(date.description.startIndex, offsetBy: 9)])
+        return #Predicate<Food> { food in
+            food.day == selectedDay
         }
     }
     
