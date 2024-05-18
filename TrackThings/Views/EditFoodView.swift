@@ -26,8 +26,8 @@ struct EditFoodView: View {
                     Text("Date")
                 }
                 Picker("Meal", selection: $food.meal) {
-                    ForEach(Meal.allCases) { meal in
-                        Text(String(describing: meal))
+                    ForEach(food.meals, id: \.self) { meal in
+                        Text(meal)
                     }
                 }
                 HStack {

@@ -44,7 +44,6 @@ struct ContentView: View {
     
     func addFood() {
         let newFood = Food(name: "", portionCalories: 0, portions: 1)
-//        modelContext.insert(newFood)
         path.append(newFood)
     }
     

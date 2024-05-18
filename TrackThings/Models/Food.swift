@@ -10,12 +10,13 @@ import SwiftData
 
 @Model
 class Food {
+    let meals = ["Breakfast", "Lunch", "Dinner", "Snack"]
     var name: String
     var portionCalories: Float
     var portions: Float
     var time: Date
     var day: String
-    var meal: Meal
+    var meal: String
     
     init(name: String, portionCalories: Float, portions: Float, time: Date = Date()) {
         self.name = name
@@ -26,16 +27,16 @@ class Food {
         
         switch Calendar.current.component(.hour, from: time) {
         case 4..<11:
-            self.meal = .breakfast
+            self.meal = "Breakfast"
             break
         case 11..<16:
-            self.meal = .lunch
+            self.meal = "Lunch"
             break
         case 16..<22:
-            self.meal = .dinner
+            self.meal = "Dinner"
             break
         default:
-            self.meal = .snack
+            self.meal = "Snack"
         }
         
     }
@@ -52,17 +53,19 @@ class Food {
         }
     }
     
-    static func selectedDayPredicate(date: Date) -> Predicate<Food> {
+    static func selectedDayPredicate(date: Date, meal: String) -> Predicate<Food> {
         let selectedDay = String(date.description[...date.description.index(date.description.startIndex, offsetBy: 9)])
         return #Predicate<Food> { food in
-            food.day == selectedDay
+            food.day == selectedDay && food.meal == meal
         }
     }
-    
 }
 
-enum Meal: Codable, CaseIterable, Identifiable, CustomStringConvertible {
-    case breakfast, lunch, dinner, snack
+enum Meal: String, Codable, CaseIterable, Identifiable, CustomStringConvertible {
+    case breakfast = "Breakfast"
+    case lunch = "Lunch"
+    case dinner = "Dinner"
+    case snack = "Snack"
     
     var id: Self { self }
     
